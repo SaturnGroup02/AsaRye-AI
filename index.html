@@ -222,6 +222,38 @@
             line-height: 1.6;
         }
 
+        /* BOTスクリーンショット */
+        .screenshots {
+            margin: 80px 0;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .screenshots h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #000;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .screenshot-grid img {
+            width: 100%;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .screenshot-grid img:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
         /* フッター */
         footer {
             background: rgba(0, 0, 0, 0.1);
@@ -328,6 +360,10 @@
             .features {
                 grid-template-columns: 1fr;
             }
+
+            .screenshot-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -403,6 +439,17 @@
                 <h3>Webサイト解析機能</h3>
                 <p>ウェブサイト[任意のurl]のJavaScriptとCSSを解析できます</p>
             </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏗️</div>
+                <h3>サーバービルド v1.0</h3>
+                <p>指示に応じて、AIがDiscordサーバーを作成してくれる機能が追加されました。指示を出すだけで理想のサーバーが完成します</p>
+            </div>
+        </section>
+
+        <!-- BOTスクリーンショット -->
+        <section class="screenshots" id="screenshots">
+            <h2>BOTのスクリーンショット</h2>
+            <div class="screenshot-grid" id="screenshotGrid"></div>
         </section>
     </div>
 
@@ -475,5 +522,25 @@
         </div>
         <p>&copy; 2026 AsaRye-AI. All rights reserved.</p>
     </footer>
+
+    <script>
+        // 同じリポジトリ内の「数字.png」（1.png, 2.png, ... 50.png）をすべて表示
+        (function () {
+            var grid = document.getElementById('screenshotGrid');
+            var MAX = 50;
+            for (var i = 1; i <= MAX; i++) {
+                (function (n) {
+                    var img = document.createElement('img');
+                    img.alt = 'BOTスクリーンショット ' + n;
+                    img.style.display = 'none';
+                    img.onload = function () {
+                        img.style.display = 'block';
+                    };
+                    img.src = n + '.png';
+                    grid.appendChild(img);
+                })(i);
+            }
+        })();
+    </script>
 </body>
 </html>
