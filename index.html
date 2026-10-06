@@ -254,6 +254,101 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
+        /* チューニングLLM */
+        .llm {
+            margin: 80px 0;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .llm h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .llm-intro {
+            text-align: center;
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .llm-card {
+            max-width: 900px;
+            margin: 0 auto 30px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .llm-card h3 {
+            font-size: 20px;
+            color: #ff1493;
+            margin-bottom: 10px;
+            word-break: break-all;
+        }
+
+        .llm-card p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .model-name {
+            font-weight: bold;
+        }
+
+        .llm-label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .code-row {
+            display: flex;
+            gap: 10px;
+            align-items: stretch;
+            margin-bottom: 15px;
+        }
+
+        .code-block {
+            flex: 1;
+            background: #2b2b3d;
+            color: #fff;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            padding: 15px 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            white-space: nowrap;
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(255, 20, 147, 0.3);
+        }
+
+        .llm-card a {
+            color: #ff1493;
+            word-break: break-all;
+        }
+
         /* フッター */
         footer {
             background: rgba(0, 0, 0, 0.1);
@@ -364,6 +459,18 @@
             .screenshot-grid {
                 grid-template-columns: 1fr;
             }
+
+            .llm-card {
+                padding: 25px 20px;
+            }
+
+            .code-row {
+                flex-direction: column;
+            }
+
+            .copy-btn {
+                padding: 12px 20px;
+            }
         }
     </style>
 </head>
@@ -450,6 +557,36 @@
         <section class="screenshots" id="screenshots">
             <h2>BOTのスクリーンショット</h2>
             <div class="screenshot-grid" id="screenshotGrid"></div>
+        </section>
+
+        <!-- チューニングLLM -->
+        <section class="llm" id="llm">
+            <h2>チューニングLLMを公開しました！</h2>
+            <p class="llm-intro">AsaRye-AIは、独自のチューニングLLMを公開しました</p>
+
+            <div class="llm-card">
+                <h3>AsaRye-LLM-Coder2.5.Q7B-o-u-4T</h3>
+                <p class="model-name">モデル名：AsaRye-AI.V4Coder</p>
+                <p>AsaRye-LLM-Coder2.5.Q7B-o-u-4Tは多言語でコード生成特化型で、コード生成とプログラミングに最適です。ノートパソコンでも動作し、無制限な内容に対応できます。</p>
+                <p class="llm-label">Ollamaインストール</p>
+                <div class="code-row">
+                    <div class="code-block"><code id="cmd1">ollama run SaturnStudio/AsaRye-LLM-Coder2.5.Q7B-o-u-4T:latest</code></div>
+                    <button class="copy-btn" data-target="cmd1" type="button">コピー</button>
+                </div>
+                <p><a href="https://ollama.com/SaturnStudio/AsaRye-LLM-Coder2.5.Q7B-o-u-4T" target="_blank" rel="noopener">https://ollama.com/SaturnStudio/AsaRye-LLM-Coder2.5.Q7B-o-u-4T</a></p>
+            </div>
+
+            <div class="llm-card">
+                <h3>AsaRye-LLM-Q7B2.6-o-u-4T:latest</h3>
+                <p class="model-name">モデル名：AsaRye-AI.V4深入尝试与思考</p>
+                <p>AsaRye-LLM-Q7B2.6-o-u-4T:latestは多言語でマルチタスク型で、質問と会話に最適です。ノートパソコンでも動作し、無制限な内容に対応できます。</p>
+                <p class="llm-label">Ollamaインストール</p>
+                <div class="code-row">
+                    <div class="code-block"><code id="cmd2">ollama run SaturnStudio/AsaRye-LLM-Q7B2.6-o-u-4T:latest</code></div>
+                    <button class="copy-btn" data-target="cmd2" type="button">コピー</button>
+                </div>
+                <p><a href="https://ollama.com/SaturnStudio/AsaRye-LLM-Q7B2.6-o-u-4T" target="_blank" rel="noopener">https://ollama.com/SaturnStudio/AsaRye-LLM-Q7B2.6-o-u-4T</a></p>
+            </div>
         </section>
     </div>
 
@@ -540,6 +677,38 @@
                     grid.appendChild(img);
                 })(i);
             }
+        })();
+
+        // コピーボタン
+        (function () {
+            var buttons = document.querySelectorAll('.copy-btn');
+            buttons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var code = document.getElementById(btn.dataset.target).textContent;
+                    function done() {
+                        btn.textContent = 'コピーしました！';
+                        setTimeout(function () {
+                            btn.textContent = 'コピー';
+                        }, 2000);
+                    }
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(code).then(done).catch(function () {
+                            fallback();
+                        });
+                    } else {
+                        fallback();
+                    }
+                    function fallback() {
+                        var ta = document.createElement('textarea');
+                        ta.value = code;
+                        document.body.appendChild(ta);
+                        ta.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(ta);
+                        done();
+                    }
+                });
+            });
         })();
     </script>
 </body>
